@@ -656,31 +656,31 @@ function(REGISTER_HARDWARE_PLATFORM PLATFORM_PATH)
 
             find_file(${PLATFORM}_CORES_PATH
                   NAMES cores
-                  PATHS ${PLATFORM_PATH}
+                  PATHS ${PLATFORM_PATH}/avr
                   DOC "Path to directory containing the Arduino core sources.")
 
             find_file(${PLATFORM}_VARIANTS_PATH
                   NAMES variants
-                  PATHS ${PLATFORM_PATH}
+                  PATHS ${PLATFORM_PATH}/avr
                   DOC "Path to directory containing the Arduino variant sources.")
 
             find_file(${PLATFORM}_BOOTLOADERS_PATH
                   NAMES bootloaders
-                  PATHS ${PLATFORM_PATH}
+                  PATHS ${PLATFORM_PATH}/avr
                   DOC "Path to directory containing the Arduino bootloader images and sources.")
 
             find_file(${PLATFORM}_PROGRAMMERS_PATH
                 NAMES programmers.txt
-                PATHS ${PLATFORM_PATH}
+                PATHS ${PLATFORM_PATH}/avr
                 DOC "Path to Arduino programmers definition file.")
 
             find_file(${PLATFORM}_BOARDS_PATH
                 NAMES boards.txt
-                PATHS ${PLATFORM_PATH}
+                PATHS ${PLATFORM_PATH}/avr
                 DOC "Path to Arduino boards definition file.")
 
             if(${PLATFORM}_BOARDS_PATH)
-                load_arduino_style_settings(${PLATFORM}_BOARDS "${PLATFORM_PATH}/boards.txt")
+                load_arduino_style_settings(${PLATFORM}_BOARDS "${PLATFORM_PATH}/avr/boards.txt")
             endif()
 
             if(${PLATFORM}_PROGRAMMERS_PATH)
@@ -2135,7 +2135,7 @@ set(ARDUINO_AVRDUDE_FLAGS -V                              CACHE STRING "")
 #                          Initialization                                     
 #=============================================================================#
 if(NOT ARDUINO_FOUND AND ARDUINO_SDK_PATH)
-    register_hardware_platform(${ARDUINO_SDK_PATH}/hardware/arduino/)
+    register_hardware_platform(${ARDUINO_SDK_PATH}/hardware/arduino)
 
     find_file(ARDUINO_LIBRARIES_PATH
         NAMES libraries
